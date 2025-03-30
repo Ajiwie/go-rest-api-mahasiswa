@@ -52,3 +52,43 @@ func (c *MahasiswaControllerImpl) Update(w http.ResponseWriter, r *http.Request,
 	helper.WriterToResponseBody(w, WebResponse)
 
 }
+
+func (c *MahasiswaControllerImpl) Delete(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+	mahasiswaId := params.ByName("mahasiswaId")
+	id, err := strconv.Atoi(mahasiswaId)
+	helper.PanicIfErr(err)
+
+	c.MahasiswaService.Delete(r.Context(), id)
+	WebResponse := web.MahasiswaWebResponse{
+		Code:   200,
+		Status: "OK",
+	}
+
+	helper.WriterToResponseBody(w, WebResponse)
+}
+
+func (c *MahasiswaControllerImpl) FindById(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+	mahasiswaId := params.ByName("mahasiswaId")
+	id, err := strconv.Atoi(mahasiswaId)
+	helper.PanicIfErr(err)
+
+	mahasiswaResponse := c.MahasiswaService.FindById(r.Context(), id)
+	WebResponse := web.MahasiswaWebResponse{
+		Code:   200,
+		Status: "OK",
+		Data:   mahasiswaResponse,
+	}
+
+	helper.WriterToResponseBody(w, WebResponse)
+}
+
+func (c *MahasiswaControllerImpl) FindAll(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+	mahasiswaResponse := c.MahasiswaService.FindAll(r.Context())
+	WebResponse := web.MahasiswaWebResponse{
+		Code:   200,
+		Status: "OK",
+		Data:   mahasiswaResponse,
+	}
+
+	helper.WriterToResponseBody(w, WebResponse)
+}
