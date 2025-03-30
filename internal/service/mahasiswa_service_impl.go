@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 
+	"github.com/Ajiwie/go-rest-api-mahasiswa/exception"
 	"github.com/Ajiwie/go-rest-api-mahasiswa/helper"
 	"github.com/Ajiwie/go-rest-api-mahasiswa/internal/model"
 	"github.com/Ajiwie/go-rest-api-mahasiswa/internal/repository"
@@ -78,7 +79,7 @@ func (s *MahasiswaServiceImpl) FindById(ctx context.Context, mahasiswaId int) we
 
 	mahasiswa, err := s.Repo.FindById(ctx, tx, mahasiswaId)
 	if err != nil {
-		helper.PanicIfErr(err)
+		panic(exception.NewNotFoundError(err.Error()))
 	}
 
 	return helper.ToMahasiswaResponse(mahasiswa)

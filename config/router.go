@@ -1,6 +1,7 @@
 package config
 
 import (
+	"github.com/Ajiwie/go-rest-api-mahasiswa/exception"
 	"github.com/Ajiwie/go-rest-api-mahasiswa/internal/controller"
 	"github.com/julienschmidt/httprouter"
 )
@@ -14,5 +15,6 @@ func NewRouter(mahasiswaController controller.MahasiswaController) *httprouter.R
 	router.PUT("/api/mahasiswa/:mahasiswaId", mahasiswaController.Update)
 	router.DELETE("/api/mahasiswa/:mahasiswaId", mahasiswaController.Delete)
 
+	router.PanicHandler = exception.ErrHandler
 	return router
 }

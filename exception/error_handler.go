@@ -18,15 +18,15 @@ func ErrHandler(w http.ResponseWriter, r *http.Request, err interface{}) {
 	internalServerError(w, r, err)
 }
 
-func notFoundError(w http.ResponseWriter, r *http.Request, err interface{}) bool {
-	exception, ok := err.(NotFoundError)
+func validationErrors(w http.ResponseWriter, r *http.Request, err interface{}) bool {
+	exception, ok := err.(validator.ValidationErrors)
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusNotFound)
+		w.WriteHeader(http.StatusBadRequest)
 
 		webResponse := web.MahasiswaWebResponse{
-			Code:   http.StatusUnauthorized,
-			Status: "NOT FOUND",
+			Code:   http.StatusBadRequest,
+			Status: "BAD REQUEST",
 			Data:   exception.Error,
 		}
 
@@ -37,15 +37,15 @@ func notFoundError(w http.ResponseWriter, r *http.Request, err interface{}) bool
 	}
 }
 
-func validationErrors(w http.ResponseWriter, r *http.Request, err interface{}) bool {
-	exception, ok := err.(validator.ValidationErrors)
+func notFoundError(w http.ResponseWriter, r *http.Request, err interface{}) bool {
+	exception, ok := err.(NotFoundError)
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusBadRequest)
+		w.WriteHeader(http.StatusNotFound)
 
 		webResponse := web.MahasiswaWebResponse{
-			Code:   http.StatusBadRequest,
-			Status: "BAD REQUEST",
+			Code:   http.StatusUnauthorized,
+			Status: "NOT FOUND",
 			Data:   exception.Error,
 		}
 
