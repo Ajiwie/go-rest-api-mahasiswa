@@ -17,7 +17,7 @@ func ToMahasiswaResponse(mahasiswa model.Mahasiswa) web.MahasiswaResponse {
 func ToMahasiswaResponses(mahasiswa []model.Mahasiswa) []web.MahasiswaResponse {
 	var mahasiswaResponses []web.MahasiswaResponse
 	for _, mahasmahasiswa := range mahasiswa {
-		mahasiswaResponses = append(mahasiswaResponses, web.MahasiswaResponse(mahasmahasiswa))
+		mahasiswaResponses = append(mahasiswaResponses, ToMahasiswaResponse(mahasmahasiswa))
 	}
 	return mahasiswaResponses
 }

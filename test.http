@@ -1,0 +1,35 @@
+### Get all mahasiswa
+GET http://localhost:3000/api/mahasiswa
+X-API-Key: RAHASIA
+Accept: application/json
+
+### Create new mahasiswa
+POST http://localhost:3000/api/mahasiswa
+Content-Type: application/json
+X-API-Key: RAHASIA
+
+{
+    "nama": "Ayu wulandari",
+    "nim": "13456",
+    "jurusan": "Sosiologi"
+}
+
+### Get mahasiswa by Id
+GET http://localhost:3000/api/mahasiswa/1
+X-API-Key: RAHASIA
+Accept: application/json
+
+### Update category by id
+PUT http://localhost:3000/api/mahasiswa/3
+X-API-Key: RAHASIA
+Accept: application/json
+Content-Type: application/json
+
+{
+  "nama" : "Aji wicaksono"
+}
+
+### Delete category by id
+DELETE http://localhost:3000/api/mahasiswa/1
+X-API-Key: RAHASIA
+Accept: application/json

@@ -29,7 +29,7 @@ func (r *MahasiswaRepositoryImpl) Create(ctx context.Context, tx *sql.Tx, mahasi
 }
 
 func (r *MahasiswaRepositoryImpl) Update(ctx context.Context, tx *sql.Tx, mahasiswa model.Mahasiswa) model.Mahasiswa {
-	sql := "UPDATE mahasiswa set nama = ? where id = ?)"
+	sql := "UPDATE mahasiswa set nama = ? where id = ?"
 	_, err := tx.ExecContext(ctx, sql, mahasiswa.Nama, mahasiswa.Id)
 	helper.PanicIfErr(err)
 	return mahasiswa
@@ -59,7 +59,7 @@ func (r *MahasiswaRepositoryImpl) FindById(ctx context.Context, tx *sql.Tx, maha
 }
 
 func (r *MahasiswaRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []model.Mahasiswa {
-	sql := "SELECT * FROM mahasiswa"
+	sql := "SELECT id, nama, nim, jurusan FROM mahasiswa"
 	rows, err := tx.QueryContext(ctx, sql)
 	helper.PanicIfErr(err)
 	defer rows.Close()

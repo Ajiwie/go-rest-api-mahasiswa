@@ -50,7 +50,7 @@ func (s *MahasiswaServiceImpl) Update(ctx context.Context, request web.Mahasiswa
 
 	mahasiswa, err := s.Repo.FindById(ctx, tx, request.Id)
 	if err != nil {
-		helper.PanicIfErr(err)
+		panic(exception.NewNotFoundError(err.Error()))
 	}
 
 	mahasiswa.Nama = request.Nama
@@ -65,7 +65,7 @@ func (s *MahasiswaServiceImpl) Delete(ctx context.Context, mahasiswaId int) {
 
 	mahasiswa, err := s.Repo.FindById(ctx, tx, mahasiswaId)
 	if err != nil {
-		helper.PanicIfErr(err)
+		panic(exception.NewNotFoundError(err.Error()))
 	}
 
 	s.Repo.Delete(ctx, tx, mahasiswa)

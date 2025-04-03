@@ -27,7 +27,7 @@ func validationErrors(w http.ResponseWriter, r *http.Request, err interface{}) b
 		webResponse := web.MahasiswaWebResponse{
 			Code:   http.StatusBadRequest,
 			Status: "BAD REQUEST",
-			Data:   exception.Error,
+			Data:   exception.Error(),
 		}
 
 		helper.WriterToResponseBody(w, webResponse)
@@ -44,7 +44,7 @@ func notFoundError(w http.ResponseWriter, r *http.Request, err interface{}) bool
 		w.WriteHeader(http.StatusNotFound)
 
 		webResponse := web.MahasiswaWebResponse{
-			Code:   http.StatusUnauthorized,
+			Code:   http.StatusNotFound,
 			Status: "NOT FOUND",
 			Data:   exception.Error,
 		}

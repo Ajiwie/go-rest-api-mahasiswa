@@ -1,4 +1,4 @@
-package gorestfulapimahasiswa
+package main
 
 import (
 	"net/http"
@@ -9,6 +9,8 @@ import (
 	"github.com/Ajiwie/go-rest-api-mahasiswa/internal/middleware"
 	"github.com/Ajiwie/go-rest-api-mahasiswa/internal/repository"
 	"github.com/Ajiwie/go-rest-api-mahasiswa/internal/service"
+	_ "github.com/go-sql-driver/mysql"
+
 	"github.com/go-playground/validator/v10"
 )
 
